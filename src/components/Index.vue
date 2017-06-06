@@ -7,6 +7,7 @@
      <div class="swiper-pagination" id="swiper-pagination1"></div>
   </div>
   <div class="content">
+  <!-- 技能 -->
       <div class="tit">我的技能 <span class="yw">MY SKILL</span></div>
       <div class="skill_con">
         <ul class="clearfix">
@@ -16,6 +17,7 @@
           </li>          
         </ul>
       </div>
+      <!-- 文章 -->
       <div class="tit">最新文章 <span class="yw">NEWEST ARTICLE</span></div>
       <div class="article_con">
         <ul class="clearfix">
@@ -30,7 +32,41 @@
           </li>
         </ul>
       </div>
+      <!-- 案例 -->
       <div class="tit">案例展示 <span class="yw">CASE SHOW</span></div>
+      <div class="case_con">
+        <ul class="clearfix">
+          <li v-for="(item,index) in cases" :style="{ backgroundImage:(index==case_activenum?'url('+item.imgActive+')':'url('+item.img+')')}" @mouseover="chageCaseNum(index)">
+            <div class="text_con" v-show="index==case_activenum" :style='[{left:(index%5>2?"-100%":"100%")},{top:((index+1)/5>2?"-80px":"0")}]'>
+              <div class="date">
+                <p class="day">{{item.date|day}}</p>
+                <p class="month">{{item.date|month}}</p>
+                <div class="title">{{item.name}}</div>
+                <router-link to="/">查看案例效果 view the details</router-link>
+              </div>
+              <div class="article_link">
+                <p>{{item.name}}</p>
+                <router-link to="/">相关文章解析 The instructions</router-link>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- 生活 -->
+       <div class="tit">我的生活 <span class="yw">MY LIFE</span></div>
+       <div class="life_con"></div>
+       <!-- 友情链接 -->
+       <div class="tit">友情链接 <span class="yw">FIEND LINK</span></div>
+       <div class="friendl_con">
+         <ul class="clearfix">
+           <li v-for="item in friendlink">
+             <a :href="item.url">
+               {{item.name}}
+             </a>
+           </li>
+         </ul>
+       </div>
+
   </div>
   </div>
 </template>
@@ -39,6 +75,7 @@
 export default {
   data () {
     return {
+      case_activenum:0,
       banner: [
         require("../assets/images/banner1.png"),
         require("../assets/images/banner.png")        
@@ -63,7 +100,43 @@ export default {
               {name:"vue 全栈开发 外卖平台系统",id:1,img:require("../assets/images/at4.jpg")},
                {name:"vue 全栈开发 外卖平台系统",id:1,img:require("../assets/images/at2.jpg")},
 
+      ],
+      cases:[
+          {date:"2017/05/06",name:"H5音乐播放器",article:1,articleName:"vue 全栈开发 外卖平台系统",img:require("../assets/images/case1.png"),imgActive:require("../assets/images/case1_active.png")},
+          {date:"2017/05/07",name:"冒泡事件",article:1,articleName:"浏览器原理解析",img:require("../assets/images/case1.png"),imgActive:require("../assets/images/case1_active.png")},
+          {date:"2017/06/24",name:"H5音乐播放器",article:1,articleName:"vue 全栈开发 外卖平台系统",img:require("../assets/images/case2.png"),imgActive:require("../assets/images/case2_active.png")},
+          {date:"2017/02/15",name:"冒泡事件",article:1,articleName:"浏览器原理解析",img:require("../assets/images/case1.png"),imgActive:require("../assets/images/case1_active.png")},
+          {date:"2017/04/12",name:"H5音乐播放器",article:1,articleName:"vue 全栈开发 外卖平台系统",img:require("../assets/images/case1.png"),imgActive:require("../assets/images/case1_active.png"),img:require("../assets/images/case1.png"),imgActive:require("../assets/images/case1_active.png")},
+          {date:"2017/08/11",name:"冒泡事件",article:1,articleName:"浏览器原理解析",img:require("../assets/images/case2.png"),imgActive:require("../assets/images/case2_active.png")},
+          {date:"2017/05/06",name:"H5音乐播放器",article:1,articleName:"vue 全栈开发 外卖平台系统",img:require("../assets/images/case1.png"),imgActive:require("../assets/images/case1_active.png")},
+          {date:"2017/05/07",name:"冒泡事件",article:1,articleName:"浏览器原理解析",img:require("../assets/images/case2.png"),imgActive:require("../assets/images/case2_active.png")},
+          {date:"2017/06/24",name:"H5音乐播放器",article:1,articleName:"vue 全栈开发 外卖平台系统",img:require("../assets/images/case1.png"),imgActive:require("../assets/images/case1_active.png")},
+          {date:"2017/02/15",name:"冒泡事件",article:1,articleName:"浏览器原理解析",img:require("../assets/images/case1.png"),imgActive:require("../assets/images/case1_active.png")},
+          {date:"2017/04/12",name:"H5音乐播放器",article:1,articleName:"vue 全栈开发 外卖平台系统",img:require("../assets/images/case2.png"),imgActive:require("../assets/images/case2_active.png")},
+          {date:"2017/08/11",name:"冒泡事件",article:1,articleName:"浏览器原理解析",img:require("../assets/images/case1.png"),imgActive:require("../assets/images/case1_active.png")},
+          {date:"2017/04/12",name:"H5音乐播放器",article:1,articleName:"vue 全栈开发 外卖平台系统",img:require("../assets/images/case2.png"),imgActive:require("../assets/images/case2_active.png")},
+          {date:"2017/04/12",name:"H5音乐播放器",article:1,articleName:"vue 全栈开发 外卖平台系统",img:require("../assets/images/case2.png"),imgActive:require("../assets/images/case2_active.png")},
+          {date:"2017/04/12",name:"H5音乐播放器",article:1,articleName:"vue 全栈开发 外卖平台系统",img:require("../assets/images/case2.png"),imgActive:require("../assets/images/case2_active.png")}
+      ],
+      friendlink:[
+        {name:"某某的博客",url:"/"},
+         {name:"某某的博客",url:"/"},
+          {name:"某某的博客",url:"/"},
+           {name:"某某的博客",url:"/"},
       ]
+    }
+  },
+ filters:{
+  day:function(el){
+   return el.substring(el.length-2,el.length);
+  },
+  month:function(el){
+    return el.substring(0,el.length-3);
+  }
+ },
+  methods:{
+    chageCaseNum(num){
+      this.case_activenum=num;
     }
   },
   directives:{
@@ -118,6 +191,7 @@ export default {
     margin:20px auto 10px;
     font-size: 16px
   }
+  /*文章*/
   .article_con{
     background:#161825;
     padding: 10px
@@ -166,4 +240,77 @@ export default {
     line-height: 30px;
     font-size: 16px;
   }
+  /*案例*/
+  .case_con ul li{
+    float: left;
+    width: 240px;
+    height: 240px;
+    background-size: cover;
+    cursor: pointer;
+    background-position: center;
+    position: relative;
+  }
+  .text_con{
+    position: absolute;
+    width: 100%;
+    height: 320px;
+    top:0;
+    left: 100%;
+    z-index: 2;
+    border:3px solid #ffb901;
+    font-size: 12px;
+  }
+  .text_con .date{
+    background-color: #ffb901;
+    text-align: right;
+    height: 240px;
+    padding: 30px;
+    cursor: auto;
+  }
+  .text_con .date .day{
+    padding: 20px 0 5px;
+    font-size: 36px;
+   }
+   .text_con .date .title{
+    padding: 30px 0 5px;
+    font-size: 14px;
+   }
+   .text_con .date a{
+    color: #333
+   }
+   .text_con a:hover{
+    text-decoration: underline;
+   }
+   .article_link{
+    color: #fff;
+    text-align: right;
+    padding: 10px 20px;
+   }
+   .article_link p{
+    padding:5px;  
+   }
+   .article_link a{
+    color: #fff;  
+   }
+   /*友情链接*/
+   .friendl_con{
+    padding-bottom: 20px
+   }
+   .friendl_con ul li{
+      display: inline-block;
+      float: left;
+      margin-right: 15px;
+      font-size: 12px
+   }
+   .friendl_con ul li a{ 
+      background-color: #1d1e23;   
+      color: #999;
+      line-height: 30px;
+      padding: 0 10px;
+      display: block;
+   }
+   .friendl_con ul li a:hover{
+      background-color: #a2c71c;    
+      color: #fff
+   }
 </style>
