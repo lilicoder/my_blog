@@ -67,4 +67,7 @@ input{
   width: 1200px;
   margin: 0 auto;
 }
+.yw{
+  font-family: arial,verdana,Microsoft YaHei,Tahoma,Simsun,sans-serif
+}
 </style>

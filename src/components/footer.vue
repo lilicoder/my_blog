@@ -19,15 +19,15 @@ export default {
   data () {
     return {
      footercon:[
-     	require("../assets/logo.png"),
-     	require("../assets/text.png"),
-     	require("../assets/cat.png"),
+     	require("../assets/images/logo.png"),
+     	require("../assets/images/text.png"),
+     	require("../assets/images/cat.png"),
      ],
      linkme:[
-     	{href:"",src:require("../assets/icon/qq.png")},
-     	{href:"",src:require("../assets/icon/wx.png")},
-     	{href:"",src:require("../assets/icon/git.png")},
-     	{href:"",src:require("../assets/icon/blog.png")}
+     	{href:"",src:require("../assets/images/icon/qq.png")},
+     	{href:"",src:require("../assets/images/icon/wx.png")},
+     	{href:"",src:require("../assets/images/icon/git.png")},
+     	{href:"",src:require("../assets/images/icon/blog.png")}
      ]
     }
   }

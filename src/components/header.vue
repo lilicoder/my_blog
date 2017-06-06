@@ -1,7 +1,7 @@
 <template>
   <div class="main_nav">
       <div class="content clearfix">
-        <div class="logo l"><img src="../assets/logo.png"/></div>
+        <div class="logo l"><img src="../assets/images/logo.png"/></div>
         <div class="menu l" id="menu">
           <ul class="clearfix menuul">
             <li v-for="(item,index) in menu" :class="{active:index==activeMenu}" @mouseover="onMenu(index)" @mouseout="offMenu(index)">
@@ -33,7 +33,6 @@
 </template>
 
 <script>
-
 import $ from 'jquery'
 export default {
   data(){
@@ -105,7 +104,7 @@ export default {
   color: #fff;
   line-height: 40px;
   border-bottom: 1px solid #fff;
-  margin-top:3px;
+  z-index: 2;
   display: none
 }
 .list li{
@@ -155,7 +154,7 @@ export default {
 .search_icon{
   width: 24px;
   height: 24px;
-  background-image: url(../assets/icon/search.png);
+  background-image: url(../assets/images/icon/search.png);
   background-size: contain;
   margin-top: 20px;
   cursor: pointer;
