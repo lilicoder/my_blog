@@ -8,7 +8,7 @@
   </div>
   <div class="content">
   <!-- 技能 -->
-      <div class="tit">我的技能 <span class="yw">MY SKILL</span></div>
+      <div class="tit">我的技能 <span class="yw">MY SKILL</span><router-link to="/">查看更多</router-link></div>
       <div class="skill_con">
         <ul class="clearfix">
           <li v-for="item in skill">
@@ -16,9 +16,13 @@
             <p>{{item.name}}</p>
           </li>          
         </ul>
+        <div class="notice">
+          {{notice.con}}
+          <span>{{notice.date}}</span>
+        </div>
       </div>
       <!-- 文章 -->
-      <div class="tit">最新文章 <span class="yw">NEWEST ARTICLE</span></div>
+      <div class="tit">最新文章 <span class="yw">NEWEST ARTICLE</span><router-link to="/">查看更多</router-link></div>
       <div class="article_con">
         <ul class="clearfix">
           <li v-for="item in articles">
@@ -33,7 +37,7 @@
         </ul>
       </div>
       <!-- 案例 -->
-      <div class="tit">案例展示 <span class="yw">CASE SHOW</span></div>
+      <div class="tit">案例展示 <span class="yw">CASE SHOW</span><router-link to="/">查看更多</router-link></div>
       <div class="case_con">
         <ul class="clearfix">
           <li v-for="(item,index) in cases" :style="{ backgroundImage:(index==case_activenum?'url('+item.imgActive+')':'url('+item.img+')')}" @mouseover="chageCaseNum(index)">
@@ -53,7 +57,7 @@
         </ul>
       </div>
       <!-- 生活 -->
-       <div class="tit">我的生活 <span class="yw">MY LIFE</span></div>
+       <div class="tit">我的生活 <span class="yw">MY LIFE</span><router-link>查看更多</router-link></div>
        <div class="life_con"></div>
        <!-- 友情链接 -->
        <div class="tit">友情链接 <span class="yw">FIEND LINK</span></div>
@@ -90,6 +94,10 @@ export default {
         {name:"PS",level:"50%"},
         {name:"SEO",level:"30%"}
       ],
+      notice:{
+        date:"2017/05/06",
+        con:"端午放假不更文"
+      },
       articles:[
         {name:"vue 全栈开发 外卖平台系统",id:1,img:require("../assets/images/at1.jpg")},
          {name:"vue 全栈开发 外卖平台系统",id:1,img:require("../assets/images/at2.jpg")},
@@ -172,9 +180,16 @@ export default {
   padding-left: 15px;
   font-size: 12px;
 }
+.tit a{
+  float: right;
+  color: #999;
+  font-size: 12px;
+  margin-right: 10px
+}
 .skill_con{
   background:#161825;
-  border-radius: 5px
+  border-radius: 5px;
+  padding-bottom: 10px;
  }
  .skill_con ul li{
   width: 12.5%;
@@ -190,6 +205,19 @@ export default {
     border:5px solid #a2c71c;
     margin:20px auto 10px;
     font-size: 16px
+  }
+  .notice{
+    margin: 10px 30px 0;
+    border-top: 1px solid #666;
+    text-align: left;
+    font-size: 12px;
+    line-height: 40px;
+    color: #999;
+    background: url("../assets/images/notice.png") no-repeat left center;
+    padding-left: 25px;
+  }
+  .notice span{
+    float: right;
   }
   /*文章*/
   .article_con{
