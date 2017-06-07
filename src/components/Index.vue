@@ -57,8 +57,28 @@
         </ul>
       </div>
       <!-- 生活 -->
-       <div class="tit">我的生活 <span class="yw">MY LIFE</span><router-link>查看更多</router-link></div>
-       <div class="life_con"></div>
+       <div class="tit">我的生活 <span class="yw">MY LIFE</span><router-link to="/">查看更多</router-link></div>
+       <div class="life_con clearfix">
+         <div class="main l" :style="[{backgroundImage:'url('+life[0].img+')'}]">
+            <div class="con">
+             <div class="con_tit">I LOVE <br/><span>{{life[0].name}}</span></div>
+             <div class="line "></div>
+             <p>{{life[0].des}}</p>
+           </div>
+         </div>
+         <div class="list r">
+           <div class="one clearfix">
+             <div class="first l" :style="[{backgroundImage:'url('+life[1].img+')'}]"></div>
+             <div class="second l" :style="[{backgroundImage:'url('+life[2].img+')'}]"></div>
+           </div>
+            <div class="two clearfix">
+              <div class="third l" :style="[{backgroundImage:'url('+life[3].img+')'}]"></div>
+              <div class="fourth l" :style="[{backgroundImage:'url('+life[4].img+')'}]"></div>
+              <div class="fifth l" :style="[{backgroundImage:'url('+life[5].img+')'}]"></div>
+              <div class="sixth l" :style="[{backgroundImage:'url('+life[6].img+')'}]"></div>
+            </div>
+         </div>
+       </div>
        <!-- 友情链接 -->
        <div class="tit">友情链接 <span class="yw">FIEND LINK</span></div>
        <div class="friendl_con">
@@ -131,8 +151,17 @@ export default {
          {name:"某某的博客",url:"/"},
           {name:"某某的博客",url:"/"},
            {name:"某某的博客",url:"/"},
-      ]
-    }
+      ],
+    life:[
+      {name:"THE ILLUSRATION",des:"生活不止眼前的苟且 还有诗和远方",img:require("../assets/images/one.gif")},
+      {name:"THE ILLUSRATION",des:"生活不止眼前的苟且 还有诗和远方",img:require("../assets/images/1.jpg")},
+      {name:"THE ILLUSRATION",des:"生活不止眼前的苟且 还有诗和远方",img:require("../assets/images/2.jpg")},
+      {name:"THE ILLUSRATION",des:"生活不止眼前的苟且 还有诗和远方",img:require("../assets/images/3.jpg")},
+      {name:"THE ILLUSRATION",des:"生活不止眼前的苟且 还有诗和远方",img:require("../assets/images/4.jpg")},
+      {name:"THE ILLUSRATION",des:"生活不止眼前的苟且 还有诗和远方",img:require("../assets/images/5.jpg")},
+      {name:"THE ILLUSRATION",des:"生活不止眼前的苟且 还有诗和远方",img:require("../assets/images/6.gif")}
+    ]
+  }
   },
  filters:{
   day:function(el){
@@ -341,4 +370,74 @@ export default {
       background-color: #a2c71c;    
       color: #fff
    }
+   .life_con .main{
+    width: 360px;
+    height: 600px;
+    background-size: cover;
+    line-height: 36px;
+    transition: all 1s
+   }
+    .life_con .main:hover{
+      background-position: right;
+    }
+    .life_con .con{
+      background-color: rgba(255,255,255,0.3);
+      height: 100%;
+      padding-left: 25px;
+    }
+    .life_con .con_tit{
+      font-size: 48px;
+      font-weight: 700;
+      padding-top: 220px;
+      text-align: left;
+    }
+    .life_con .con_tit span{
+      color: #ffb901;
+      font-size:30px;
+    }
+    .life_con .line{
+      width: 60px;
+      height: 5px;
+      background-color: #ccc;
+      margin:8px 0 5px;
+    }
+    .life_con p{
+      text-align: left;
+      font-size: 14px;
+      color: #333
+    }
+    .life_con .list{      
+      width: 840px;
+    }
+    .life_con .one{
+      height: 330px;
+    }
+    .life_con .two{
+      height: 270px;
+    }
+    .life_con .one>div,.life_con .two>div{      
+      height: 100%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      transition: all 1s;
+
+    }
+    .life_con .one>div:hover,.life_con .two>div:hover{
+      background-position: bottom;
+    }
+    .life_con .first{
+      width: 510px;
+    }
+    .life_con .second{
+      width: 330px;
+    }
+    .life_con .third,.life_con .fourth{
+      width: 180px;
+    }
+     .life_con .fifth{
+      width: 240px;
+    }
+    .life_con .sixth{
+      width: 240px;
+    }
 </style>
