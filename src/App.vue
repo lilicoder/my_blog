@@ -1,8 +1,7 @@
 <template>
   <div id="app">
     <v-header></v-header>
-    <router-view>
-      
+    <router-view>      
     </router-view>
     <v-footer></v-footer>
   </div>
@@ -11,11 +10,17 @@
 <script>
 import header from '@/components/header'
 import footer from '@/components/footer'
+import share from '@/components/share'
+
 export default {
   name: 'app',
   components:{
     "v-header":header,
     "v-footer":footer
+  },
+  computed:{
+  },
+  methods:{
   }
 }
 </script>
@@ -24,6 +29,11 @@ export default {
 *{
   padding: 0;
   margin:0;
+}
+body{
+  width: 100%;
+  overflow-x: hidden;
+  background:#0C0E13; 
 }
 #app {
   font-family: "Microsoft yahei";
@@ -70,4 +80,22 @@ input{
 .yw{
   font-family: arial,verdana,Microsoft YaHei,Tahoma,Simsun,sans-serif
 }
+  .wrap_w{
+    background-color: #fff;
+  }
+  .navkind{
+    color: #333;
+    padding: 20px 0 5px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+    text-align: left;
+    text-indent: 15px;
+    font-size: 14px;
+    font-weight: 700
+  }
+  .blue_block{
+    width: 5px;
+    height: 20px;
+    background-color: #007aff
+  }
 </style>

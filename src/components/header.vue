@@ -5,9 +5,9 @@
         <div class="menu l" id="menu">
           <ul class="clearfix menuul">
             <li v-for="(item,index) in menu" :class="{active:index==activeMenu}" @mouseover="onMenu(index)" @mouseout="offMenu(index)">
-            {{item.name}}
-            <ul v-if="item.list&&item.list.length!=0" class="list">
-              <li v-for="(item_l,index) in item.list" :class="{bornone:index==item.list.length-1}">{{item_l}}</li>
+            <span><router-link :to="{'name':item.component}">{{item.name}}</router-link></span>
+            <ul v-if="item.component=='article'" class="list">
+              <li v-for="(item_l,index) in article_kind" :class="{bornone:index==article_kind-1}">{{item_l}}</li>
             </ul>
             </li>
           </ul>
@@ -34,20 +34,24 @@
 
 <script>
 import $ from 'jquery'
+import {mapState ,mapMutations ,mapActions} from 'vuex'
 export default {
   data(){
     return{
        activeMenu:0,
        search:false,
        menu:[
-        {name: "主页",list:[]},
-        {name: "笔记",list:["HTML5","cavas","react","vue","webpack","node"]},
-        {name: "案例展示",list:[]},
-        {name: "工具分享",list:[]},
-        {name: "关于我",list:[]}
+        {name: "主页",component:"index"},
+        {name: "笔记",component:"article"},
+        {name: "案例展示",component:"index"},
+        {name: "工具分享",component:"index"},
+        {name: "关于我",component:"index"}
        ]
     }
    
+  },
+  computed:{
+    ...mapState(["article_kind"])
   },
   methods:{
     searchT:function(){
@@ -75,7 +79,6 @@ export default {
   line-height: 70px;
   background: #171a21;
   border-bottom: 2px solid #000;
-  color: #a2c71c;
   font-size: 14px
 }
 .menu{
@@ -91,6 +94,9 @@ export default {
 .menuul>li.active{
   border-bottom: 3px solid #a2c71c;
   border-radius: 1px
+}
+.menuul>li a{  
+  color: #a2c71c;
 }
 .menuul>li:hover{
   background: #0c0e13

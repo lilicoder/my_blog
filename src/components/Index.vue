@@ -22,17 +22,19 @@
         </div>
       </div>
       <!-- 文章 -->
-      <div class="tit">最新文章 <span class="yw">NEWEST ARTICLE</span><router-link to="/">查看更多</router-link></div>
+      <div class="tit">最新文章 <span class="yw">NEWEST ARTICLE</span><router-link to="/article">查看更多</router-link></div>
       <div class="article_con">
         <ul class="clearfix">
           <li v-for="item in articles">
-            <div class="img_con">
-              <img :src="item.img" width="290" height="240" />
-              <div class="read">
-                <span>阅读详细</span>
-              </div>
-            </div>
-            <p>{{item.name}}</p>
+              <router-link :to="{'name':'read'}">
+                <div class="img_con">
+                  <img :src="item.img" width="290" height="240" />
+                  <div class="read">
+                    <span>阅读详细</span>
+                  </div>
+                </div>
+                <p>{{item.name}}</p>
+              </router-link>
           </li>
         </ul>
       </div>
@@ -92,45 +94,23 @@
        </div>
   </div>
   <!-- 回到顶部 -->
-  <div id="goTop" class="goTop">
-    <img src="../assets/images/gotop.png"/>
-  </div>
+  <v-go></v-go>
   <!-- 分享到 -->
-  <div class="share" id="share">分享到
-     <div class="con" >
-       <a :href="item.url" v-for="item in sharelink">
-         <img :src="item.img" width="20px">
-         {{item.name}}
-       </a>
-     </div>
-  </div>
+  <v-share></v-share>
   </div>
 </template>
 
 <script>
 import $ from "jquery"
+import share from "@/components/share"
+import gotop from "@/components/Gotop"
 export default {
   data () {
     return {
       case_activenum:0,
-      share:false,
       banner: [
         require("../assets/images/banner1.png"),
         require("../assets/images/banner.png")        
-      ],
-      sharelink:[
-        {
-          name:"QQ",img:require("../assets/images/icon/qq_b.png"),url:"http://connect.qq.com/widget/shareqq/index.html?url="+window.location.href+"&title="+document.title+"&summary=糖°的博客"
-        },
-        {
-          name:"空间",img:require("../assets/images/icon/zone_b.png"),url:"http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url="+window.location.href+"&title="+document.title+"&site="+document.title+"&fromurl="+window.location.href
-        },
-        {
-          name:"微博",img:require("../assets/images/icon/wb_b.png"),url:"http://open.weibo.com/sharebutton"
-        },
-        {
-          name:"贴吧",img:require("../assets/images/icon/tie_b.png"),url:"http://tieba.baidu.com/f/commit/share/openShareApi?url="+window.location.href+"&title="+document.title
-        },
       ],
       skill:[
         {name:"DIV+CSS",level:"85%"},
@@ -191,6 +171,10 @@ export default {
     ]
   }
   },
+  components:{
+    "v-share":share,
+    "v-go":gotop
+  },
  filters:{
   day:function(el){
    return el.substring(el.length-2,el.length);
@@ -215,38 +199,7 @@ export default {
           })
       }
     }
-  },
-  mounted:function(){
-    var _this=this;
-    //回到顶部
-    var h=$(window).height();
-    $(document).scroll(function(){
-      var sh=$(document).scrollTop();
-      $("#share").stop().animate({top:h/2-$("#share").height()/2+sh},500)
-      if (h<sh)
-      {
-        $("#goTop").fadeIn();
-      }
-      else{
-        $("#goTop").fadeOut();
-      }
-    })
-    $("#goTop").click(function(){
-        $('body,html').animate({scrollTop:0},500);
-        return false;
-    })
-    //分享
-    $("#share").css({top:h/2-$("#share").height()/2});
-    $("#share").click(function(){
-      if( _this.share){
-        $(this).animate({right:0});
-      }
-      else{
-        $(this).animate({right:50});
-      }
-      _this.share=!_this.share;
-    })
-}
+  }  
 }
 </script>
 
@@ -323,6 +276,9 @@ export default {
     box-sizing: border-box;
     cursor: pointer;
   }
+  .article_con ul li a{
+      color: #ddd;
+    }
   .article_con ul li .img_con{
     position: relative;
     overflow: hidden;
@@ -506,38 +462,5 @@ export default {
       cursor: pointer;
       display: none;
     }
-    .share{
-      width: 30px;
-      background-color: #007AFF;
-      position: absolute;
-      right: 0;
-      top: 600px;
-      color: #fff;
-      padding:10px 0;
-      border-radius: 3px 0 0 3px;
-      cursor: pointer;
-      z-index: 1
-    }
-    .share .con{
-      position: absolute;
-      top: -50px;
-      left: 30px;
-      width: 50px;
-      background-color: #fff;
-      border-radius: 3px 0 0 3px;
-      overflow: hidden;
-      padding: 5px 0;
-    }
-    .share a{      
-      display: block;
-      font-size: 12px;
-      padding:  5px 0
-    }
-    .share a:hover{
-      background-color: #eee
-    }
-    .share a img{
-      display: block;
-      margin:0 auto;
-    }
+   
 </style>
