@@ -96,6 +96,7 @@ input{
   .blue_block{
     width: 5px;
     height: 20px;
-    background-color: #007aff
+    background-color: #007aff;
+    margin-right: 5px
   }
 </style>

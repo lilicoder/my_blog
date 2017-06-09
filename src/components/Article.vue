@@ -34,7 +34,7 @@
 			<div class="article_con">
 				<ul class="clearfix">
 					<li v-for="item in article" class="l">
-					<router-link :to="{name:'article'}">
+					<router-link :to="{name:'read'}">
 							<div class="img_con">
 								<img :src="item.img"/>
 							</div>

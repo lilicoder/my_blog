@@ -40,12 +40,103 @@
 				<img src="../assets/images/photo.jpg">
 			</div>
 		</div>
-		<div class="gray_line"></div>
-		评论
+		<div class="share_con clearfix">
+			<div class="like l">喜欢 | {{likenum}}</div>
+			<div class="share_way r">
+				<a href="item.url" v-for="item in sharelink">
+					<div class="img_con">
+						<img :src="item.img_g">
+						<img :src="item.img_r">
+					</div>
+				</a>
+			</div>
+		</div>
+		<div class="content">
+			<div class="clearfix comments">
+				<span class="blue_block l"></span>
+				评论<span> ( 已有{{comments_l}}条评论 ) </span>
+			</div>
+			<div class="my_comment_n" v-if="!islogin">
+				<div class="login_btn">登录 以后才能发表评论</div>
+			</div>
+			<div class="my_comment" v-else>
+				<div class="input_area clearfix">
+					<img :src="login_info.photo">
+					<textarea placeholder="你想说什么..."></textarea>
+					<div class="send_comment">发表评论</div>
+				</div>
+			</div>
+			<div class="all_comments" v-if="comments_l!=0">
+				<div class="commit_item clearfix" v-for="item in comments">
+					<img :src="item.photo" class="l">
+					<div class="commit_con l">
+						<div class="name">{{item.name}}</div>
+						<div class="text">{{item.content}}</div>
+						<div class="time">{{item.time}}</div>
+					</div>
+				</div>
+			</div>
+			<div class="all_comments" v-else>
+				<div class="no_co">
+					<img src="../assets/images/icon/pen.png">
+					成为第一个评论的人
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
 <script>
-	
+	import {mapState} from 'vuex'
+	export default{
+		data(){
+			return{				
+				likenum:7,
+				islogin:true,
+				login_info:{
+					photo:require("../assets/images/user_photo.jpg")
+				},
+				comments:[
+					{
+						name:"用户一",
+						photo:require("../assets/images/user_photo1.jpg"),
+						content:"这是通过纯css实现的步骤流程效果，扩展性强，可以随意增加减少数量，兼容性ie6",
+						time:"2017.03.12 15:12:00"
+					},
+					{
+						name:"用户二",
+						photo:require("../assets/images/user_photo1.jpg"),
+						content:"这是通过纯css，扩展性强，可以随意增加减少数量，兼容性ie6",
+						time:"2017.03.12 15:12:00"
+					},
+					{
+						name:"用户二",
+						photo:require("../assets/images/user_photo1.jpg"),
+						content:"这是通过纯css实现的步骤流程效果，扩展性强，可以随意增加减少数量，兼容性ie6这是通过纯css实现的步骤流程效果，扩展性强，可以随意增加减少数量，兼容性ie6",
+						time:"2017.03.12 15:12:00"
+					},
+					{
+						name:"用户二",
+						photo:require("../assets/images/user_photo1.jpg"),
+						content:"这是通过纯css实现的步骤流程效果，扩展性强，可以随意增加减少数量，兼容性ie6",
+						time:"2017.03.12 15:12:00"
+					},
+					{
+						name:"用户二",
+						photo:require("../assets/images/user_photo1.jpg"),
+						content:"这是通过纯css实现的步骤流程效果，扩展性强，可以随意增加减少数量，兼容性ie6这是通过纯css实现的步骤流程效果，扩展性强，可以随意增加减少数量，兼容性ie6这是通过纯css实现的步骤流程效果，扩展性强，可以随意增加减少数量，兼容性ie6这是通过纯css实现的步骤流程效果，扩展性强，可以随意增加减少数量，兼容性ie6这是通过纯css实现的步骤流程效果，扩展性强，可以随意增加减少数量，兼容性ie6",
+						time:"2017.03.12 15:12:00"
+					},
+					
+				],
+				comments_l:0
+			}
+		},
+		computed:{
+	      ...mapState([
+	        "sharelink"
+	      ])
+    },
+	}
 </script>
 <style scoped>
 	.tit{
@@ -99,10 +190,118 @@
 	.ds .photo img{
 		max-width: 100%;
 	}
-	.gray_line{
-		height: 1px;
+	.share_con{
 		width: 600px;
 		margin: 0 auto;
-		background-color: #f8f8f8;		
+		padding: 20px 0;
+		border-top: 1px solid #f8f8f8;		
+	}
+	.like{
+		border: 1px solid #ea6f5a;
+		border-radius: 20px;
+		line-height: 40px;
+		width: 120px;
+		color: #ea6f5a
+	}
+	.share_way{
+		width: 180px;
+		line-height: 40px;
+	}
+	.share_way a{
+		width: 32px;
+		height: 32px;
+		overflow: hidden;
+		float: left;
+		margin-right: 10px;
+	}
+	.share_way .img_con{
+		position: relative;
+		top:0;
+		transition: all 200ms;
+	}
+	.share_way a:hover .img_con{
+		top:-32px;
+	}
+	.share_way a img{
+		display: block;
+	}
+	.comments{
+		text-align: left;
+	}
+	.comments span{
+		color: #999;
+		font-size: 12px
+	}
+	.my_comment_n{
+		border: 1px solid #eee;
+		margin: 20px 0;
+		padding: 30px 0;
+	}
+	.login_btn{
+		width: 500px;
+		background-color: #eee;
+		margin: 0 auto;
+		font-size: 14px;
+		line-height: 30px;
+	}
+	.input_area{
+		position: relative;
+		margin: 40px 0 20px;
+		padding-left: 20px;
+	}
+	.input_area>img{
+		position: absolute;
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		top: -25px;
+		left: -5px;
+	}
+	.input_area textarea{
+		width: 1136px;
+		height: 50px;
+		padding: 20px;
+		border:1px solid #eee;
+		resize: none;
+		outline: none;
+	}
+	.send_comment{
+		width: 100px;
+		line-height: 35px;
+		background-color: #007AFF;
+		text-align: center;
+		color: #fff;
+		float: right;
+		border-radius: 3px;
+		cursor: pointer;
+	}
+	.input_area textarea:focus{
+	}
+	.all_comments{
+		text-align: left;
+		padding-bottom: 20px;
+	}
+	.all_comments img{
+		width: 60px;
+		height: 60px;
+	}
+	.commit_con{
+		padding-left: 10px;
+	}
+	.commit_item{
+		margin-bottom: 20px;
+	}
+	.all_comments .name,.all_comments .time{
+		color: #999;
+		font-size: 12px;
+	}
+	.all_comments .text{
+		font-size: 14px;
+		margin: 3px 0;
+		width: 1100px
+	}
+	.all_comments .no_co{
+		margin: 30px auto 10px;
+		width: 300px;
 	}
 </style>
