@@ -142,7 +142,7 @@ export default {
           {date:"2017/05/07",name:"冒泡事件",article:1,articleName:"浏览器原理解析",img:require("../assets/images/case1.png"),imgActive:require("../assets/images/case1_active.png")},
           {date:"2017/06/24",name:"H5音乐播放器",article:1,articleName:"vue 全栈开发 外卖平台系统",img:require("../assets/images/case2.png"),imgActive:require("../assets/images/case2_active.png")},
           {date:"2017/02/15",name:"冒泡事件",article:1,articleName:"浏览器原理解析",img:require("../assets/images/case1.png"),imgActive:require("../assets/images/case1_active.png")},
-          {date:"2017/04/12",name:"H5音乐播放器",article:1,articleName:"vue 全栈开发 外卖平台系统",img:require("../assets/images/case1.png"),imgActive:require("../assets/images/case1_active.png"),img:require("../assets/images/case1.png"),imgActive:require("../assets/images/case1_active.png")},
+          {date:"2017/04/12",name:"H5音乐播放器",article:1,articleName:"vue 全栈开发 外卖平台系统",img:require("../assets/images/case1.png"),imgActive:require("../assets/images/case1_active.png")},
           {date:"2017/08/11",name:"冒泡事件",article:1,articleName:"浏览器原理解析",img:require("../assets/images/case2.png"),imgActive:require("../assets/images/case2_active.png")},
           {date:"2017/05/06",name:"H5音乐播放器",article:1,articleName:"vue 全栈开发 外卖平台系统",img:require("../assets/images/case1.png"),imgActive:require("../assets/images/case1_active.png")},
           {date:"2017/05/07",name:"冒泡事件",article:1,articleName:"浏览器原理解析",img:require("../assets/images/case2.png"),imgActive:require("../assets/images/case2_active.png")},

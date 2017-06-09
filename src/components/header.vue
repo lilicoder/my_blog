@@ -43,8 +43,8 @@ export default {
        menu:[
         {name: "主页",component:"index"},
         {name: "笔记",component:"article"},
-        {name: "案例展示",component:"index"},
-        {name: "工具分享",component:"index"},
+        {name: "案例展示",component:"case"},
+        {name: "工具分享",component:"tool"},
         {name: "关于我",component:"index"}
        ]
     }
@@ -86,7 +86,6 @@ export default {
 }
 .menuul>li{
   float: left;
-  padding:0 45px;
   margin: 0 10px;
   cursor: pointer;
   position: relative;
@@ -95,8 +94,13 @@ export default {
   border-bottom: 3px solid #a2c71c;
   border-radius: 1px
 }
-.menuul>li a{  
+.menuul>li>span{
+  display: block;
+}
+.menuul>li a{ 
+display: block; 
   color: #a2c71c;
+  padding:0 45px;
 }
 .menuul>li:hover{
   background: #0c0e13
