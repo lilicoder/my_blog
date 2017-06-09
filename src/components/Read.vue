@@ -35,13 +35,15 @@
 		</div>
 		<div class="ds content">
 			<div class="tips">如果觉得我的文章对您有帮助，请随意打赏，您的支持将鼓励我继续创作！</div>
-			<div class="ds_btn">打赏支持</div>
+			<div class="ds_btn">打赏支持
+				<div class="img_con"><img :src="ewm"/></div>
+			</div>
 			<div class="photo">
 				<img src="../assets/images/photo.jpg">
 			</div>
 		</div>
 		<div class="share_con clearfix">
-			<div class="like l">喜欢 | {{likenum}}</div>
+			<div class="like l" @click.once="like_handle"><img :src="like?require('../assets/images/icon/heart_r.png'):require('../assets/images/icon/heart.png')" width="20">喜欢 | {{likenum}}</div>
 			<div class="share_way r">
 				<a href="item.url" v-for="item in sharelink">
 					<div class="img_con">
@@ -89,7 +91,8 @@
 	import {mapState} from 'vuex'
 	export default{
 		data(){
-			return{				
+			return{	
+				like:false,			
 				likenum:7,
 				islogin:true,
 				login_info:{
@@ -133,9 +136,17 @@
 		},
 		computed:{
 	      ...mapState([
-	        "sharelink"
+	        "sharelink",
+	        "ewm"
 	      ])
-    },
+	    },
+	    methods:{
+	    	like_handle:function(){
+	    		if(!this.like){
+	    			this.like=!this.like;
+	    		}
+	    	}
+	    }
 	}
 </script>
 <style scoped>
@@ -179,6 +190,21 @@
 		color: #fff;
 		border-radius: 2px;
 		cursor: pointer;
+	}
+	.ds .ds_btn .img_con{
+		width: 150px;
+		position: relative;
+		left: -25px;
+		top: 0;
+		overflow: hidden;
+		height: 0;
+		transition: all 500ms ease;
+	}
+	.ds .ds_btn img{
+		max-width: 100%;
+	}
+	.ds .ds_btn:hover .img_con{
+		height: 150px;
 	}
 	.ds .photo{
 		width: 50px;

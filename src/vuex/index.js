@@ -18,7 +18,8 @@ const state={
 	    {
 	      name:"贴吧",img:require("../assets/images/icon/tie_b.png"),img_g:require("../assets/images/icon/tie_g.png"),img_r:require("../assets/images/icon/tie_r.png"),url:"http://tieba.baidu.com/f/commit/share/openShareApi?url="+window.location.href+"&title="+document.title
 	    },
-	  ]
+	  ],
+	 ewm:require("../assets/images/ewm.png")
 }
 
 const mutations = {
