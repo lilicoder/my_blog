@@ -183,10 +183,4 @@
 .article_con ul li img{
 	max-width: 100%
 }
-.loading{
-	text-align: center;
-	color: #999;
-	font-size: 12px;
-	padding: 20px;
-}
 </style>

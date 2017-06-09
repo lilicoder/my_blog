@@ -8,7 +8,7 @@
   </div>
   <div class="content">
   <!-- 技能 -->
-      <div class="tit">我的技能 <span class="yw">MY SKILL</span><router-link to="/">查看更多</router-link></div>
+      <div class="tit">我的技能 <span class="yw">MY SKILL</span><!-- <router-link to="/">查看更多</router-link> --></div>
       <div class="skill_con">
         <ul class="clearfix">
           <li v-for="item in skill">
@@ -39,25 +39,8 @@
         </ul>
       </div>
       <!-- 案例 -->
-      <div class="tit">案例展示 <span class="yw">CASE SHOW</span><router-link to="/">查看更多</router-link></div>
-      <div class="case_con">
-        <ul class="clearfix">
-          <li v-for="(item,index) in cases" :style="{ backgroundImage:(index==case_activenum?'url('+item.imgActive+')':'url('+item.img+')')}" @mouseover="chageCaseNum(index)">
-            <div class="text_con" v-show="index==case_activenum" :style='[{left:(index%5>2?"-100%":"100%")},{top:((index+1)/5>2?"-80px":"0")}]'>
-              <div class="date">
-                <p class="day">{{item.date|day}}</p>
-                <p class="month">{{item.date|month}}</p>
-                <div class="title">{{item.name}}</div>
-                <router-link to="/">查看案例效果 view the details</router-link>
-              </div>
-              <div class="article_link">
-                <p>{{item.name}}</p>
-                <router-link to="/">相关文章解析 The instructions</router-link>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
+      <div class="tit">案例展示 <span class="yw">CASE SHOW</span><router-link to="/case">查看更多</router-link></div>
+      <case-con :data="cases"></case-con>
       <!-- 生活 -->
        <div class="tit">我的生活 <span class="yw">MY LIFE</span><router-link to="/">查看更多</router-link></div>
        <div class="life_con clearfix">
@@ -104,6 +87,7 @@
 import $ from "jquery"
 import share from "@/components/share"
 import gotop from "@/components/Gotop"
+import case_con from "@/components/case_con"
 export default {
   data () {
     return {
@@ -173,7 +157,8 @@ export default {
   },
   components:{
     "v-share":share,
-    "v-go":gotop
+    "v-go":gotop,
+    "case-con":case_con
   },
  filters:{
   day:function(el){
@@ -313,58 +298,8 @@ export default {
     font-size: 16px;
   }
   /*案例*/
-  .case_con ul li{
-    float: left;
-    width: 240px;
-    height: 240px;
-    background-size: cover;
-    cursor: pointer;
-    background-position: center;
-    position: relative;
-  }
-  .text_con{
-    position: absolute;
-    width: 100%;
-    height: 320px;
-    top:0;
-    left: 100%;
-    z-index: 2;
-    border:3px solid #ffb901;
-    font-size: 12px;
-  }
-  .text_con .date{
-    background-color: #ffb901;
-    text-align: right;
-    height: 240px;
-    padding: 30px;
-    cursor: auto;
-  }
-  .text_con .date .day{
-    padding: 20px 0 5px;
-    font-size: 36px;
-   }
-   .text_con .date .title{
-    padding: 30px 0 5px;
-    font-size: 14px;
-   }
-   .text_con .date a{
-    color: #333
-   }
-   .text_con a:hover{
-    text-decoration: underline;
-   }
-   .article_link{
-    color: #fff;
-    text-align: right;
-    padding: 10px 20px;
-   }
-   .article_link p{
-    padding:5px;  
-   }
-   .article_link a{
-    color: #fff;  
-   }
-   /*友情链接*/
+ 
+  /*友情链接*/
    .friendl_con{
     padding-bottom: 20px
    }

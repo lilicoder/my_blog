@@ -1,8 +1,9 @@
 <template>
   <div id="app">
     <v-header></v-header>
-    <router-view>      
-    </router-view>
+    <transition name="fade" mode="out-in">
+       <router-view></router-view>
+    </transition>
     <v-footer></v-footer>
   </div>
 </template>
@@ -97,5 +98,17 @@ input{
     width: 5px;
     height: 20px;
     background-color: #007aff;
+  }  
+  .loading{
+    text-align: center;
+    color: #999;
+    font-size: 12px;
+    padding: 20px;
+  }
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 400ms
+  }
+  .fade-enter, .fade-leave-active {
+    opacity: 0
   }
 </style>

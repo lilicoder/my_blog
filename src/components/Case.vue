@@ -5,30 +5,14 @@
 				<span class="blue_block l"></span>
 				案例展示
 			</div>
-		      <div class="case_con">
-		        <ul class="clearfix">
-		          <li v-for="(item,index) in cases" :style="{ backgroundImage:(index==case_activenum?'url('+item.imgActive+')':'url('+item.img+')')}" @mouseover="chageCaseNum(index)">
-		            <div class="text_con" v-show="index==case_activenum" :style='[{left:(index%5>2?"-100%":"100%")},{top:((index+1)/5>2?"-80px":"0")}]'>
-		              <div class="date">
-		                <p class="day">{{item.date|day}}</p>
-		                <p class="month">{{item.date|month}}</p>
-		                <div class="title">{{item.name}}</div>
-		                <router-link to="/">查看案例效果 view the details</router-link>
-		              </div>
-		              <div class="article_link">
-		                <p>{{item.name}}</p>
-		                <router-link to="/">相关文章解析 The instructions</router-link>
-		              </div>
-		            </div>
-		          </li>
-		        </ul>
-		      </div>
+		      <case-con :data="cases"></case-con>
 		      <div class="loading" v-if="loading">加载中...</div>
 	      </div>
     </div>
 </template>
 <script>
 	import $ from 'jquery'
+	import case_con from './case_con'
 	export default{
 		data(){
 			return{
@@ -56,6 +40,9 @@
 		      ]
 			}
 		},
+		components:{
+			"case-con":case_con
+		},
 		 filters:{
 		  day:function(el){
 		   return el.substring(el.length-2,el.length);
@@ -80,61 +67,5 @@
 	}
 </script>
 <style scoped>
-	.case_con ul li{
-    float: left;
-    width: 240px;
-    height: 240px;
-    background-size: cover;
-    cursor: pointer;
-    background-position: center;
-    position: relative;
-  }
-  .text_con{
-    position: absolute;
-    width: 100%;
-    height: 320px;
-    top:0;
-    left: 100%;
-    z-index: 2;
-    border:3px solid #ffb901;
-    font-size: 12px;
-  }
-  .text_con .date{
-    background-color: #ffb901;
-    text-align: right;
-    height: 240px;
-    padding: 30px;
-    cursor: auto;
-  }
-  .text_con .date .day{
-    padding: 20px 0 5px;
-    font-size: 36px;
-   }
-   .text_con .date .title{
-    padding: 30px 0 5px;
-    font-size: 14px;
-   }
-   .text_con .date a{
-    color: #333
-   }
-   .text_con a:hover{
-    text-decoration: underline;
-   }
-   .article_link{
-    color: #fff;
-    text-align: right;
-    padding: 10px 20px;
-   }
-   .article_link p{
-    padding:5px;  
-   }
-   .article_link a{
-    color: #fff;  
-   }
-   .loading{
-	text-align: center;
-	color: #999;
-	font-size: 12px;
-	padding: 20px;
-}
+
 </style>

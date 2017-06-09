@@ -131,7 +131,7 @@
 					},
 					
 				],
-				comments_l:0
+				comments_l:5
 			}
 		},
 		computed:{

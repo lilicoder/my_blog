@@ -1,10 +1,10 @@
 <template>
   <div class="main_nav">
       <div class="content clearfix">
-        <div class="logo l"><img src="../assets/images/logo.png"/></div>
+        <div class="logo l"><router-link to="/"><img src="../assets/images/logo.png"/></router-link></div>
         <div class="menu l" id="menu">
           <ul class="clearfix menuul">
-            <li v-for="(item,index) in menu" :class="{active:index==activeMenu}" @mouseover="onMenu(index)" @mouseout="offMenu(index)">
+            <li v-for="(item,index) in menu" :class="{active:index==activeMenu}" @click="activeMenu=index" @mouseover="onMenu(index)" @mouseout="offMenu(index)">
             <span><router-link :to="{'name':item.component}">{{item.name}}</router-link></span>
             <ul v-if="item.component=='article'" class="list">
               <li v-for="(item_l,index) in article_kind" :class="{bornone:index==article_kind-1}">{{item_l}}</li>
@@ -25,7 +25,7 @@
         <div class="search r">
           <div class="search_icon" @click="searchT"></div>
           <div class="search_input">
-            <input type="" name="" placeholder="搜索你想要的..." />
+            <input type="" name="" placeholder="搜索你想要的..." v-model="searchwhat" @keyup.13="search_handle" />
           </div>
         </div>
       </div>
@@ -40,6 +40,7 @@ export default {
     return{
        activeMenu:0,
        search:false,
+       searchwhat:"",
        menu:[
         {name: "主页",component:"index"},
         {name: "笔记",component:"article"},
@@ -68,6 +69,10 @@ export default {
     },
     offMenu:function(index){
        $(".menuul>li").eq(index).find(".list").stop().slideUp();
+    },
+    search_handle:function(){
+      this.$router.push({ name: 'article' })
+      console.log(this.searchwhat);
     }
   }
 }
@@ -82,7 +87,7 @@ export default {
   font-size: 14px
 }
 .menu{
-  margin:0 60px
+  margin:0 20px 0 60px;
 }
 .menuul>li{
   float: left;
@@ -114,7 +119,7 @@ display: block;
   color: #fff;
   line-height: 40px;
   border-bottom: 1px solid #fff;
-  z-index: 2;
+  z-index: 3;
   display: none
 }
 .list li{
@@ -127,7 +132,6 @@ display: block;
   width: 160px;
 }
 .login_con{
-
 }
 .login_con_item{
   float: left;
@@ -162,11 +166,11 @@ display: block;
  
 }
 .search_icon{
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   background-image: url(../assets/images/icon/search.png);
   background-size: contain;
-  margin-top: 20px;
+  margin-top: 22px;
   cursor: pointer;
 }
 .search_input{
