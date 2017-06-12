@@ -14,10 +14,10 @@ export default{
       var sh=$(document).scrollTop();
       if (h<sh)
       {
-        $("#goTop").fadeIn();
+        $("#goTop").stop().fadeIn();
       }
       else{
-        $("#goTop").fadeOut();
+        $("#goTop").stop().fadeOut();
       }
     })
     $("#goTop").click(function(){

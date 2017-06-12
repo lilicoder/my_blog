@@ -12,7 +12,11 @@
       <div class="skill_con">
         <ul class="clearfix">
           <li v-for="item in skill">
-            <div class="cvs">{{item.level}}</div>
+            <div class="cvs">
+                <canvas class="canvas" v-draw.num="item.level" width="100" height="100">
+                  
+                </canvas>
+            </div>
             <p>{{item.name}}</p>
           </li>          
         </ul>
@@ -183,6 +187,67 @@ export default {
             paginationType:"progress"
           })
       }
+    },
+    draw:{
+      inserted:function(el,param){
+        function Cavas_pecent(json){
+            this.w=json.w;
+            this.h=json.h;
+            this.timer=null;
+            this.deg=0;
+            this.new_deg=json.new_deg,
+            this.obj=json.obj;
+            this.color=json.color;
+            this.stroke_color=json.stroke_color;
+            this.pecent_f=json.pecent_f;
+            this.lineWidth=json.lineWidth;
+            this.bg_color=json.bg_color;
+          }
+          Cavas_pecent.prototype.draw = function() {
+              var txt=this.deg+"%";
+              this.obj.lineCap="round";
+              this.obj.lineWidth=this.lineWidth;
+              this.obj.strokeStyle = this.stroke_color;
+              this.obj.beginPath();
+              this.obj.arc(this.w/2,this.h/2,this.w/2-this.lineWidth,0,this.deg/100*Math.PI*2);
+              this.obj.fillStyle="#fff";
+              this.obj.font="16px Arial"; 
+              this.obj.fillText(txt , 50 - this.obj.measureText(txt).width/2 ,55);
+              this.obj.stroke();
+          }
+          Cavas_pecent.prototype.drawBg = function(){
+            this.obj.beginPath();
+              this.obj.strokeStyle=this.bg_color;
+              this.obj.arc(this.w/2,this.h/2,this.w/2-this.lineWidth,0,100*Math.PI*2);
+              this.obj.stroke();
+              this.obj.save();
+              return this;
+          }
+          Cavas_pecent.prototype.go_draw = function(){
+              var _this=this;
+              _this.timer=setInterval(function(){
+              if(_this.deg==_this.pecent_f){
+                  clearInterval(_this.timer);
+                }
+                else{
+                  _this.deg++;
+                  _this.obj.clearRect(0,0,150,300);
+                  _this.drawBg().draw()
+                }
+              },30)
+          }
+          el.ca=new Cavas_pecent({
+              w:el.offsetWidth,
+              h:el.offsetHeight,
+              obj:el.getContext("2d"),
+              color:"#a24565",
+              stroke_color:"#a2c71c",
+              pecent_f:parseInt(param.value),
+              lineWidth:5,
+              bg_color:"#ccc"
+            })
+         el.ca.go_draw();
+      }
     }
   }  
 }
@@ -224,13 +289,6 @@ export default {
   font-size: 12px;padding: 20px 0
  }
  .skill_con ul li .cvs{
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    line-height: 90px;
-    border:5px solid #a2c71c;
-    margin:20px auto 10px;
-    font-size: 16px
   }
   .notice{
     margin: 10px 30px 0;

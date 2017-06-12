@@ -71,6 +71,10 @@
 	            	{name:"vue 全栈开发 外卖平台系统",id:1,img:require("../assets/images/at2.jpg"),des:"Iconfont-国内功能很强大且图标内容很丰富的矢量图标库",see:36265,chart:45},
 	         		{name:"vue 全栈开发 外卖平台系统",id:1,img:require("../assets/images/at6.jpg"),des:"Iconfont-国内功能很强大且图标内容很丰富的矢量图标库",see:36265,chart:45},
 	         		{name:"vue 全栈开发 外卖平台系统",id:1,img:require("../assets/images/at4.jpg"),des:"Iconfont-国内功能很强大且图标内容很丰富的矢量图标库",see:36265,chart:45},
+	         		{name:"vue 全栈开发 外卖平台系统",id:1,img:require("../assets/images/at3.jpg"),des:"Iconfont-国内功能很强大且图标内容很丰富的矢量图标库",see:36265,chart:45},
+	         		{name:"vue 全栈开发 外卖平台系统",id:1,img:require("../assets/images/at6.jpg"),des:"Iconfont-国内功能很强大且图标内容很丰富的矢量图标库",see:36265,chart:45},
+	         		{name:"vue 全栈开发 外卖平台系统",id:1,img:require("../assets/images/at4.jpg"),des:"Iconfont-国内功能很强大且图标内容很丰富的矢量图标库",see:36265,chart:45},
+	         		{name:"vue 全栈开发 外卖平台系统",id:1,img:require("../assets/images/at3.jpg"),des:"Iconfont-国内功能很强大且图标内容很丰富的矢量图标库",see:36265,chart:45},
 	         		{name:"vue 全栈开发 外卖平台系统",id:1,img:require("../assets/images/at3.jpg"),des:"Iconfont-国内功能很强大且图标内容很丰富的矢量图标库",see:36265,chart:45}
 	               ]
 			}
