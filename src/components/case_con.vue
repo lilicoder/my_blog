@@ -45,7 +45,6 @@
 		  },
 		 mounted(){
 			var _this=this;
-			console.log(this.data);
 			$(document).scroll(function(){
 				if($(document).scrollTop()>(200+_this.start/_this.count*240)){
 					_this.loading=true;	
