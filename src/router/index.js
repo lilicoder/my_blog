@@ -1,10 +1,20 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from '@/components/Index'
-import Article from '@/components/Article'
-import Read from '@/components/Read'
-import Case from '@/components/Case'
-import Tool from '@/components/Tool'
+const Index= resolve=> {
+    require(['@/components/Index'], resolve)
+}
+const Article= resolve=> {
+    require(['@/components/Article'], resolve)
+}
+const Read= resolve=> {
+    require(['@/components/Read'], resolve)
+}
+const Case= resolve=> {
+    require(['@/components/Case'], resolve)
+}
+const Tool= resolve=> {
+    require(['@/components/Tool'], resolve)
+}
 
 Vue.use(Router)
 
