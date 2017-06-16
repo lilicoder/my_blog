@@ -1,20 +1,30 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-const Index= resolve=> {
-    require(['@/components/Index'], resolve)
-}
-const Article= resolve=> {
-    require(['@/components/Article'], resolve)
-}
-const Read= resolve=> {
-    require(['@/components/Read'], resolve)
-}
-const Case= resolve=> {
-    require(['@/components/Case'], resolve)
-}
-const Tool= resolve=> {
-    require(['@/components/Tool'], resolve)
-}
+const Index= resolove=> {
+   require.ensure(['@/components/Index'], ()=>{
+      resolove(require('@/components/Index'))
+    })
+};
+const Article= resolove=> {
+    require.ensure(['@/components/Article'], ()=>{
+      resolove(require('@/components/Article'))
+    })
+};
+const Read= resolove=> {
+    require.ensure(['@/components/Read'], ()=>{
+      resolove(require('@/components/Read'))
+    })
+};
+const Case= resolove=> {
+    require.ensure(['@/components/Case'], ()=>{
+      resolove(require('@/components/Case'))
+    })
+};
+const Tool= resolove=> {
+    require.ensure(['@/components/Tool'], ()=>{
+      resolove(require('@/components/Tool'))
+    })
+};
 
 Vue.use(Router)
 
